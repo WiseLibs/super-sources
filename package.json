@@ -1,0 +1,24 @@
+{
+  "name": "super-sources",
+  "version": "1.0.0",
+  "description": "Beautiful errors for any source code",
+  "author": "Joshua Wise <joshuathomaswise@gmail.com>",
+  "homepage": "https://github.com/WiseLibs/super-sources#readme",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/WiseLibs/super-sources.git"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "types": "src/types.d.ts",
+  "scripts": {
+    "test": "mocha --exit --slow=100 --timeout=5000"
+  },
+  "dependencies": {
+    "string-width": "^4.2.3"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  }
+}
