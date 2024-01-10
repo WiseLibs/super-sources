@@ -1,7 +1,7 @@
 {
   "name": "super-sources",
   "version": "1.0.0",
-  "description": "Beautiful errors for any source code",
+  "description": "Beautiful error printing for any source code",
   "author": "Joshua Wise <joshuathomaswise@gmail.com>",
   "homepage": "https://github.com/WiseLibs/super-sources#readme",
   "repository": {
