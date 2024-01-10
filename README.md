@@ -1,6 +1,6 @@
 # super-sources [![test](https://github.com/WiseLibs/super-sources/actions/workflows/test.yml/badge.svg)](https://github.com/WiseLibs/super-sources/actions/workflows/test.yml)
 
-This package provides classes for representing pieces of source code, and allows you to print beautiful errors/warnings that display the referenced pieces of source code. Unicode is supported, including the [Supplementary Multilingual Plane](https://en.wikipedia.org/wiki/Plane_(Unicode)#Supplementary_Multilingual_Plane).
+This contains classes for representing pieces of source code, and allows you to print beautiful errors/warnings that display the referenced pieces of source code. Unicode is supported, including the [Supplementary Multilingual Plane](https://en.wikipedia.org/wiki/Plane_(Unicode)#Supplementary_Multilingual_Plane).
 
 ## Installation
 
