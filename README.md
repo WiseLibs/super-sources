@@ -97,7 +97,7 @@ const source = new Source(file, 0, 1);
 
 ### source.to(*otherSource*) -> *Source*
 
-Creates a [`Source`](#new-sourcefile-start-end) object that spans the range from this source to the given source. A negative or zero-length range will result in a [`RangeError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError). Also, both sources must be from the same file.
+Creates a [`Source`](#new-sourcefile-start-end) object that spans the range from this source to another source. A negative or zero-length range will result in a [`RangeError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError). Also, both sources must be from the same file.
 
 ```js
 const source1 = new Source(file, 0, 5);
@@ -171,11 +171,11 @@ The following options are supported:
 - `positions` (boolean)
 	* Whether or not the output should highlight the exact positions of the referenced source code. Default: `true`.
 - `maxLines` (number)
-	* The maximum number of source lines to display (per source snippet) before lines are omitted to save space.
+	* The maximum number of source lines to display (per source snippet) before lines are omitted to save space. Default: `7`.
 
 ## class ErrorBuilder
 
-A convenient builder class for making customized [`SourceError`](#class-sourceerror) objects.
+A convenient builder class for making customized [`SourceError`](#class-sourceerror)s.
 
 ### builder.error(*message*) -> *this*
 
