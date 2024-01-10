@@ -179,19 +179,19 @@ A convenient builder class for making customized [`SourceError`](#class-sourceer
 
 ### builder.error(*message*) -> *this*
 
-Adds an error message to the [`SourceError`](#class-sourceerror) being built. A single [`SourceError`](#class-sourceerror) can contain multiple error messages.
+Adds an error message to the builder. Any number of error messages can be added.
 
 ### builder.warning(*message*) -> *this*
 
-Adds a warning message to the [`SourceError`](#class-sourceerror) being built. A single [`SourceError`](#class-sourceerror) can contain multiple warning messages.
+Adds a warning message to the builder. Any number of warning messages can be added.
 
 ### builder.source(*source*, [*helperText*]) -> *this*
 
-Adds a [`Source`](#new-sourcefile-start-end) object to the [`SourceError`](#class-sourceerror) being built. Any number of sources can be added. The added source will be associated with the most recent `.error()` or `.warning()` that was added.
+Adds a [`Source`](#new-sourcefile-start-end) object to the builder. Any number of sources can be added. The added source will be associated with the most recent `.error()` or `.warning()` that was added.
 
 ### builder.note(*message*) -> *this*
 
-Adds a note to the [`SourceError`](#class-sourceerror) being built. Any number of notes can be added. The note will be associated with the most recent `.source()` that was added.
+Adds a note to the builder. Any number of notes can be added. The note will be associated with the most recent `.source()` that was added.
 
 ### builder.done() -> *SourceError*
 
