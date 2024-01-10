@@ -47,19 +47,20 @@ Error: Misspelling detected
 
 ## new File(*filename*, *content*)
 
-Creates an object that represents a source file.
+An object that represents a source file.
 
 ```js
 const fs = require('fs');
 
 const filename = 'example.txt';
 const content = fs.readFileSync(filename, 'utf8');
+
 const file = new File(filename, content);
 ```
 
 ### file.at(*offset*, [*length*]) -> *Source*
 
-Creates a [`Source`](#new-sourcefile-start-end) object, which represents a slice of the source file. The length defaults to `1`.
+Creates a [`Source`](#new-sourcefile-start-end) object, which represents a slice of the source file. If `length` is not provided, it defaults to `1`.
 
 ```js
 const source = file.at(0);
@@ -82,13 +83,14 @@ assert(lineNumber === 1);
 
 ## new Source(*file*, *start*, *end*)
 
-Creates an object that represents a slice of the given [`File`](#new-filefilename-content). The length of the slice (`end - start`) must be at least `1`.
+An object that represents a slice of the given [`File`](#new-filefilename-content), from offsets `start` (inclusive) to `end` (exclusive). The length of the slice (`end - start`) must be at least `1`.
 
 ```js
 const fs = require('fs');
 
 const filename = 'example.txt';
 const content = fs.readFileSync(filename, 'utf8');
+
 const file = new File(filename, content);
 const source = new Source(file, 0, 1);
 ```
