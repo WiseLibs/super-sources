@@ -197,7 +197,7 @@ Adds a note to the builder. Any number of notes can be added. The note will be a
 
 Returns a [`SourceError`](#class-sourceerror) containing all errors, warnings, sources, and notes that were added to this builder.
 
-### builder.throw() -> *throw SourceError*
+### builder.throw() -> *throw*
 
 This is the same as `builder.done()`, but the resulting [`SourceError`](#class-sourceerror) will be immediately thrown.
 
