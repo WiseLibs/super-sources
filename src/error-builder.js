@@ -69,9 +69,10 @@ module.exports = class ErrorBuilder {
 			throw new TypeError('SourceError must have at least one error or warning');
 		}
 
-		const issues = this._issues.map(cloneIssue);
+		const issues = this._issues;
 		const err = new SourceError(issues[0].message, issues);
 		Error.captureStackTrace(err, ErrorBuilder.prototype.done);
+		this._issues = [];
 		return err;
 	}
 
@@ -79,16 +80,6 @@ module.exports = class ErrorBuilder {
 		throw this.done();
 	}
 };
-
-function cloneIssue({ message, sources, isWarning }) {
-	sources = sources.map(cloneSourceRef);
-	return { message, sources, isWarning };
-}
-
-function cloneSourceRef({ source, helperText, notes }) {
-	notes = notes.slice();
-	return { source, helperText, notes };
-}
 
 // Required here because of circular dependencies.
 const SourceError = require('./source-error');

@@ -66,4 +66,36 @@ describe('ErrorBuilder', function () {
 		const builder = new ErrorBuilder();
 		expect(() => builder.done()).to.throw(TypeError);
 	});
+	it('resets its output after calling done()', function () {
+		const file = new File('', 'hello world!\nwelcome!\n');
+		const source = file.at(0, 5);
+		const builder = new ErrorBuilder()
+			.error('foo')
+			.source(source, 'here')
+			.note('cool thing')
+			.note('other cool thing');
+
+		expect(builder.done().issues).to.deep.equal([
+			{
+				message: 'foo',
+				isWarning: false,
+				sources: [
+					{
+						source: source,
+						helperText: 'here',
+						notes: ['cool thing', 'other cool thing'],
+					},
+				],
+			},
+		]);
+
+		expect(() => builder.source(source)).to.throw(TypeError);
+		expect(builder.warning('bar').done().issues).to.deep.equal([
+			{
+				message: 'bar',
+				isWarning: true,
+				sources: [],
+			},
+		]);
+	});
 });

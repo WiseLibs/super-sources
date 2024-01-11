@@ -45,6 +45,7 @@ declare namespace SuperSources {
 		warning(message: string): this;
 		source(source: Source, helperText?: string): this;
 		note(message: string): this;
+		issue(issue: Issue): this;
 		done(): string;
 	}
 

@@ -122,11 +122,22 @@ describe('Printer', function () {
 			.error('second issue (error)')
 			.source(file1.at(5, 8), 'here')
 			.note('this says hello')
-			.warning('third issue (warning)')
-			.source(file1.at(16, 8), 'also here')
-			.note('this says world')
-			.note('the next one will be a different file')
-			.source(file2.at(10), 'and finally here');
+			.issue({
+				message: 'third issue (warning)',
+				isWarning: true,
+				sources: [
+					{
+						source: file1.at(16, 8),
+						helperText: 'also here',
+						notes: ['this says world', 'the next one will be a different file'],
+					},
+					{
+						source: file2.at(10),
+						helperText: 'and finally here',
+						notes: [],
+					},
+				],
+			});
 
 		expect(printer.done()).to.equal(
 			'Error: first issue (error)\n' +
@@ -235,6 +246,45 @@ describe('Printer', function () {
 			'...  | \n' +
 			'10 | | world!\n' +
 			'   | |______^ here\n'
+		);
+	});
+	it('resets its output after calling done()', function () {
+		const file1 = new File('info.txt', 'first file');
+		const file2 = new File('other.txt', 'second file');
+		const printer = new Printer({ colors: false })
+			.error('foo')
+			.source(file1.at(0), 'here')
+			.error('bar')
+			.source(file1.at(1));
+
+		expect(printer.done()).to.equal(
+			'Error: foo\n' +
+			' --> info.txt\n' +
+			'  |   \n' +
+			'1 |   first file\n' +
+			'  |   ^ here\n\n' +
+			'Error: bar\n' +
+			'  |   \n' +
+			'1 |   first file\n' +
+			'  |    ^\n'
+		);
+
+		printer
+			.error('baz')
+			.source(file1.at(1), 'also here')
+			.error('qux')
+			.source(file2.at(0));
+
+		expect(printer.done()).to.equal(
+			'Error: baz\n' +
+			'  |   \n' +
+			'1 |   first file\n' +
+			'  |    ^ also here\n\n' +
+			'Error: qux\n' +
+			' --> other.txt\n' +
+			'  |   \n' +
+			'1 |   second file\n' +
+			'  |   ^\n'
 		);
 	});
 });

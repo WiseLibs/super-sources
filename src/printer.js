@@ -114,8 +114,28 @@ module.exports = class Printer {
 		return this;
 	}
 
+	issue(issue) {
+		if (issue.isWarning) {
+			this.warning(issue.message);
+		} else {
+			this.error(issue.message);
+		}
+
+		for (const sourceRef of issue.sources) {
+			this.source(sourceRef.source, sourceRef.helperText);
+
+			for (const note of sourceRef.notes) {
+				this.note(note);
+			}
+		}
+
+		return this;
+	}
+
 	done() {
-		return this._output.slice(0, -1);
+		const output = this._output.slice(0, -1);
+		this._output = '';
+		return output;
 	}
 };
 

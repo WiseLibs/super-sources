@@ -26,19 +26,7 @@ module.exports = class SourceError extends Error {
 
 		if (this.issues.length) {
 			for (const issue of this.issues) {
-				if (issue.isWarning) {
-					printer.warning(issue.message);
-				} else {
-					printer.error(issue.message);
-				}
-
-				for (const sourceRef of issue.sources) {
-					printer.source(sourceRef.source, sourceRef.helperText);
-
-					for (const note of sourceRef.notes) {
-						printer.note(note);
-					}
-				}
+				printer.issue(issue);
 			}
 		} else {
 			printer.error(this.message);
