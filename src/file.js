@@ -23,7 +23,6 @@ module.exports = class File {
 			},
 			content: {
 				value: content,
-				enumerable: true,
 			},
 			[cachedLineMap]: {
 				value: null,
